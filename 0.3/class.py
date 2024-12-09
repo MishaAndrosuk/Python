@@ -89,25 +89,27 @@
 
 
 class TemperatureConverter:
-    @staticmethod
-    def celsius_to_fahrenheit(celsius):
-        return (celsius * 9/5) + 32
+    count = 0
 
     @staticmethod
-    def fahrenheit_to_celsius(fahrenheit):
-        return (fahrenheit - 32) * 5/9
+    def celsius_to_fahrenheit(temperature):
+        TemperatureConverter.count += 1
+        return temperature * 1.8 + 32
 
     @staticmethod
-    def calculate_count(start, end):
-        return abs(end - start)
+    def fahrenheit_to_celsius(temperature):
+        TemperatureConverter.count += 1
+        return (temperature - 32) / 1.8
 
-celsius = 25
-fahrenheit = 77
+    @staticmethod
+    def calculate_count():
+       print("The number of temperature conversions needed is", TemperatureConverter.count)
 
-converted_fahrenheit = TemperatureConverter.celsius_to_fahrenheit(celsius)
-converted_celsius = TemperatureConverter.fahrenheit_to_celsius(fahrenheit)
-count = TemperatureConverter.calculate_count(celsius, fahrenheit)
 
-print(f"{celsius} degrees Celsius is equal to {converted_fahrenheit} degrees Fahrenheit.")
-print(f"{fahrenheit} degrees Fahrenheit is equal to {converted_celsius} degrees Celsius.")
-print(f"The number of temperature conversions needed is {count}.")
+
+TemperatureConverter.calculate_count()
+temperature =TemperatureConverter.celsius_to_fahrenheit(1)
+print(temperature)
+temperature =TemperatureConverter.fahrenheit_to_celsius(100)
+print(temperature)
+TemperatureConverter.calculate_count()
